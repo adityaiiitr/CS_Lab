@@ -11,17 +11,21 @@ int main()
         scanf("%d", &arr[i]);
     }
 
-    int max = -1, s_max;
+    int max = arr[0], s_max = arr[0];
 
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] > max)
+        if (arr[i] > s_max)
         {
-            s_max = max;
-            max = arr[i];
+            s_max = arr[i];
+            if (arr[i] > max)
+            {
+                s_max = max;
+                max = arr[i];
+            }
         }
     }
-
+    printf("S_max%d \n", s_max);
     int c = 0;
     for (int i = 0; i < n; i++)
     {
