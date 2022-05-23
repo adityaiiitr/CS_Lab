@@ -17,12 +17,13 @@ int main()
     {
         if (arr[i] > s_max)
         {
-            s_max = arr[i];
             if (arr[i] > max)
             {
                 s_max = max;
                 max = arr[i];
             }
+            if (arr[i] > s_max && arr[i] != max)
+                s_max = arr[i];
         }
     }
     printf("S_max%d \n", s_max);
