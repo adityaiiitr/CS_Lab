@@ -6,15 +6,40 @@ struct Node
     int data;
     struct Node *next;
 };
-// Printing
+// Printing also the middle One
 void printing(struct Node *n)
 {
+    int arr[100], i = 0;
 
     while (n != NULL)
     {
+        arr[i++] = n->data;
         printf("%d \n", n->data);
         n = n->next;
     }
+    printf("Middle Elements: %d \n\n", arr[i / 2]);
+}
+// Node Creation
+struct Node *nodeCreation(struct Node *head, int new_data)
+{
+    struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *temp = head;
+    newnode->data = new_data;
+    newnode->next = NULL;
+    if (temp == NULL)
+    {
+        head = newnode;
+    }
+    else
+    {
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newnode;
+    }
+
+    return head;
 }
 // Insertion At Beginning
 void insertion_beg(struct Node *head, int new_data)
@@ -27,6 +52,7 @@ void insertion_beg(struct Node *head, int new_data)
     else
         newnode->next = head;
     head = newnode;
+    printf("\n|| New Linked List Formed ||\n");
     printing(head);
 }
 // Insertion At Mid Positions
@@ -76,30 +102,24 @@ void insertion_end(struct Node *n, int new_data)
 int main()
 {
 
-    struct Node *first = (struct Node *)malloc(sizeof(struct Node));
-    struct Node *second = (struct Node *)malloc(sizeof(struct Node));
-    struct Node *third = (struct Node *)malloc(sizeof(struct Node));
-    struct Node *fourth = (struct Node *)malloc(sizeof(struct Node));
-    struct Node *fifth = (struct Node *)malloc(sizeof(struct Node));
-    struct Node *head = first;
-
-    first->data = 10;
-    first->next = second;
-
-    second->data = 20;
-    second->next = third;
-
-    third->data = 30;
-    third->next = fourth;
-
-    fourth->data = 40;
-    fourth->next = fifth;
-
-    fifth->data = 50;
-    fifth->next = NULL;
+    struct Node *head = NULL;
+    int data, t = 1;
+    printf("|| Node Creation Begins ||\n");
+    while (t)
+    {
+        printf("Enter The Data to be added: ");
+        scanf("%d", &data);
+        head = nodeCreation(head, data);
+        printf("Want To Add More Data?\n1.Yes\n0.No\n");
+        scanf("%d", &t);
+    }
+    printf("\n|| Node Creation Ends ||\n\n");
+    printf("|| Linked List Formed ||\n");
 
     printing(head);
-    int data, choice, position;
+
+    printf("|| Linked List Insertion Operations ||\n");
+    int choice, position;
     printf("Enter The Data to be added: ");
     scanf("%d", &data);
     printf("Insertion At \n1.Beg \n2.Mid\n3.End\nEnter The Choice:  ");
@@ -115,11 +135,13 @@ int main()
         printf("Enter The Position: ");
         scanf("%d", &position);
         insertion_mid(head, data, position);
+        printf("\n|| New Linked List Formed ||\n");
         printing(head);
         break;
 
     case 3:
         insertion_end(head, data);
+        printf("\n|| New Linked List Formed ||\n");
         printing(head);
         break;
     default:

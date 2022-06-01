@@ -18,7 +18,7 @@ void printing(struct Node *n)
     }
 }
 
-void replace(struct Node *n, int newdata, int position)
+void replace(struct Node *n, int newdata, int position) // replace
 {
     position--; // This line is needed!
     if (n != NULL)
