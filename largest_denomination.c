@@ -11,9 +11,9 @@ int main()
         if (amount / notes[i] != 0)
         {
             counter = counter + amount / notes[i];
-            printf("Minimum Number Of Notes: %d\n", counter);
+            // printf("Minimum Number Of Notes: %d\n", counter);
             amount = amount % notes[i];
-            printf("amount: %d\n", amount);
+            // printf("amount: %d\n", amount);
         }
     }
     printf("Minimum Number Of Notes: %d", counter);

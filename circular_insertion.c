@@ -6,102 +6,94 @@ struct Node
     int data;
     struct Node *next;
 };
-// Printing also the middle One
+
 void printing(struct Node *n)
 {
-    // int arr[100], i = 0;
-
-    while (n != NULL)
+    struct Node *head = n;
+    do
     {
-        // arr[i++] = n->data;
-        printf("%d \n", n->data);
+        printf("%d\n", n->data);
         n = n->next;
-    }
-    // printf("Middle Elements: %d \n\n", arr[i / 2]);
+    } while (n != head);
 }
-// Node Creation
+
 struct Node *nodeCreation(struct Node *head, int new_data)
 {
     struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
     struct Node *temp = head;
     newnode->data = new_data;
     newnode->next = NULL;
+
     if (temp == NULL)
     {
         head = newnode;
+        newnode->next = head;
     }
     else
     {
-        while (temp->next != NULL)
+        while (temp->next != head)
         {
             temp = temp->next;
         }
+        newnode->next = temp->next;
         temp->next = newnode;
     }
 
     return head;
 }
+
 // Insertion At Beginning
 void insertion_beg(struct Node *head, int new_data)
 {
     struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
 
     newnode->data = new_data;
-    if (head == NULL)
-        newnode->next = NULL;
-    else
-        newnode->next = head;
+    struct Node *n = head;
+    while (n->next != head)
+    {
+        n = n->next;
+    }
+    newnode->next = head;
+
     head = newnode;
-    printf("\n|| New Linked List Formed ||\n");
+    n->next = head;
     printing(head);
 }
+
 // Insertion At Mid Positions
 void insertion_mid(struct Node *n, int new_data, int position)
 {
     struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
     newnode->data = new_data;
     newnode->next = NULL;
-    position--; // This line is needed!
-    if (n != NULL)
+    position--;
+
+    while (position--)
     {
-        while (position--)
-        {
-            n = n->next;
-            if (n == NULL)
-            {
-                printf("Invalid Position. No Insertion Done!\n");
-                return;
-            }
-        }
-        newnode->next = n->next;
-        n->next = newnode;
+        n = n->next;
     }
-    else
-        printf("Empty List.");
+    newnode->next = n->next;
+    n->next = newnode;
 }
+
 // Insertion At End
 void insertion_end(struct Node *n, int new_data)
 {
     struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
     newnode->data = new_data;
     newnode->next = NULL;
-    if (n != NULL)
+    struct Node *head = n;
+    while (n->next != head)
     {
-        while (n->next != NULL)
-        {
-            n = n->next;
-        }
-
-        newnode->next = n->next;
-        n->next = newnode;
+        n = n->next;
     }
-    else
-        printf("Empty List.");
+
+    newnode->next = n->next;
+    n->next = newnode;
 }
 
 int main()
 {
-
     struct Node *head = NULL;
     int data, t = 1;
     printf("|| Node Creation Begins ||\n");
