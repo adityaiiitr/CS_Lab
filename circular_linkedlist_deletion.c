@@ -122,39 +122,34 @@ int main()
 
     printf("|| Linked List Insertion Operations ||\n");
     int choice, position;
-    do
+    printf("Enter The Data to be added: ");
+    scanf("%d", &data);
+    printf("Deletion At \n1.Beg \n2.Mid\n3.End\nEnter The Choice:  ");
+
+    scanf("%d", &choice);
+    switch (choice)
     {
-        printf("Enter The Data to be added: ");
-        scanf("%d", &data);
-        printf("Insertion At \n1.Beg \n2.Mid\n3.End\nEnter The Choice:  ");
+    case 1:
+        insertion_beg(head, data);
+        break;
 
-        scanf("%d", &choice);
-        switch (choice)
-        {
-        case 1:
-            insertion_beg(head, data);
-            break;
+    case 2:
+        printf("Enter The Position: ");
+        scanf("%d", &position);
+        insertion_mid(head, data, position);
+        printf("\n|| New Linked List Formed ||\n");
+        printing(head);
+        break;
 
-        case 2:
-            printf("Enter The Position: ");
-            scanf("%d", &position);
-            insertion_mid(head, data, position);
-            printf("\n|| New Linked List Formed ||\n");
-            printing(head);
-            break;
-
-        case 3:
-            insertion_end(head, data);
-            printf("\n|| New Linked List Formed ||\n");
-            printing(head);
-            break;
-        default:
-            printf("Invalid Choice! Exiting...");
-            break;
-        }
-        printf("Want To Perform another operation?\n1.Yes\n0.NO\n");
-        scanf("%d", &t);
-    } while (t);
+    case 3:
+        insertion_end(head, data);
+        printf("\n|| New Linked List Formed ||\n");
+        printing(head);
+        break;
+    default:
+        printf("Invalid Choice! Exiting...");
+        break;
+    }
 
     return 0;
 }
