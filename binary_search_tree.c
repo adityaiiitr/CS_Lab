@@ -1,3 +1,4 @@
+// This code is not Completed
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,47 +10,111 @@ struct Node
 };
 
 struct Node *root = NULL;
+struct Node *n = NULL;
 
-struct Node *insertion(int data)
+void insertNode(int data)
 {
-    struct Node *n = root;
-    while (1)
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+
+    if (root == NULL)
     {
-        if (data > n->data)
+        root = newNode;
+
+        return;
+    }
+    struct Node *temp = root;
+    while (temp != NULL)
+    {
+        n = temp;
+        if (temp->data < data)
+        {
+            temp = temp->right;
+        }
+        else
+        {
+            temp = temp->left;
+        }
+    }
+
+    if (n->data < data)
+    {
+        n->right = newNode;
+    }
+    else
+    {
+        n->left = newNode;
+    }
+}
+
+void searchNode(int data)
+{
+    n = root;
+    while (n != NULL)
+    {
+        if (n->data == data)
+        {
+            printf("%d Found in BST.\n", data);
+            return;
+        }
+        else if (n->data < data)
         {
             n = n->right;
         }
-        else if (data < n->data)
+        else
         {
             n = n->left;
         }
-        else
     }
+    printf("%d Not Found in BST.\n", data);
 }
-
-struct Node *createTree()
+void inOrder(struct Node *toor)
 {
-    int data;
-    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-    printf("Enter the Data (-1) for No Node: ");
-    scanf("%d", &data);
-    if (data == -1)
-    {
-        return NULL;
-    }
-    newNode->data = data;
-    printf("The Left Child of %d. ", data);
-    newNode->left = createTree();
-    printf("The Right Child of %d. ", data);
-    newNode->right = createTree();
-
-    return newNode;
+    if (toor == NULL)
+        return;
+    inOrder(toor->left);
+    printf("%d ", toor->data);
+    inOrder(toor->right);
 }
 
+void deleteNode(int data)
+{
+    // code to work on
+}
 int main()
 {
-
-    root = createTree(root);
+    int choice, data;
+    printf("\nBST OPerations\n1.Insertion\n2.Deletion\n3.Inorder\n4.Search\n0.Exit\nEnter Your Choice: ");
+    scanf("%d", &choice);
+    while (choice)
+    {
+        switch (choice)
+        {
+        case 1:
+            printf("Enter The Node data: ");
+            scanf("%d", &data);
+            insertNode(data);
+            break;
+        case 2:
+            break;
+        case 3:
+            printf("Inorder: ");
+            inOrder(root);
+            printf("\n");
+            break;
+        case 4:
+            printf("Enter The Data To Search in BST: ");
+            scanf("%d", &data);
+            searchNode(data);
+            break;
+        deafult:
+            break;
+        }
+        printf("\nBST OPerations\n1.Insertion\n2.Deletion\n3.Inorder\n4.Search\n0.Exit\nEnter Your Choice: ");
+        scanf("%d", &choice);
+    }
 
     return 0;
 }

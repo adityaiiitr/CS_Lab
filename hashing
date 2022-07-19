@@ -6,13 +6,23 @@ struct Node
     int data;
     struct Node *next;
 };
-
 struct Hash
 {
+    int capacity;
     int key;
-    int *arr;
+    struct Node *array;
 };
+struct Hash *hash = NULL;
 
-int main()
+int createHashTable(int capacity)
 {
+    hash = (struct Hash *)malloc(sizeof(struct Hash));
+    hash->capacity = capacity;
+    hash->array = (int *)malloc(sizeof(int) * hash->capacity);
+}
+
+void hashTable(int data)
+{
+    int key = data % hash->capacity;
+    hash->array[key]
 }

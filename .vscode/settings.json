@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "check_in_looping_linkedlist": "c"
+        "check_in_looping_linkedlist": "c",
+        "hashing": "c"
     }
 }

@@ -49,7 +49,7 @@ void heapify_max()
         {
             swap(parent, i);
         }
-        i = (i - 1) / 2;
+        i = parent;
     }
 }
 

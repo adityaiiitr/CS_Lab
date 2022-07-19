@@ -65,9 +65,10 @@ int main()
     struct Node *head = NULL;
     char str[100];
     printf("Enter The expression: ");
-    scanf("%s", &str);
-    int check = parenthesis_check(head, str);
-    if (check)
+    gets(str);
+    // scanf("%s", &str);
+
+    if (parenthesis_check(head, str))
         printf("Parenthesis Not Balanced");
     else
         printf("Parenthesis Balanced");
